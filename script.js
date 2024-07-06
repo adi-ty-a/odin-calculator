@@ -1,4 +1,4 @@
-let display,n1,n2,op;
+let display,n1,n2,op,pair;
 
 
 function operate(no1,no2,operator){
@@ -12,31 +12,60 @@ let press = document.querySelectorAll('button')
 press.forEach((press)=>
 press.addEventListener('click',function(){
     let newbutton = press.textContent
+    
     if(newbutton === '+'){
-        op='sum';
+        if( pair === true){
+            result();
+            op='sum'
+        }
+        else{
+        op='sum'
         update()
+    }
     }
     else if(newbutton === '-'){
-        op='subtract';
-        update()
+        if( pair === true){
+            result();
+            op='subtract'
+        }
+        else{
+            op='subtract';
+        update()}
     }
     else if(newbutton === '*'){
+        if( pair === true){
+            result();
+            op='multiply'
+        }
+        else{
         op='multiply';
-        update()
+        update()}
     }
     else if(newbutton === '/'){
+        if( pair === true){
+            result();
+            op='divide'
+        }
+        else{
         op='divide';
-        update()
+        update()}
     }
     else if(newbutton === '='){
         result();
-    }
+}
     else if(newbutton === 'AC'){
         let text = document.querySelector('.main-display')
         text.textContent = ''
     }
 
-    else{let text = document.querySelector('.main-display')
+    else{
+        // two op after one operation the p get clear 
+        if(pair == false){
+            let text = document.querySelector('.main-display')
+            text.textContent=''
+            pair=true
+        }
+        let text = document.querySelector('.main-display')
     text.textContent += this.textContent;}
 }))
 
@@ -57,10 +86,15 @@ function divide(n1,n2){
 function result(){
     let text = document.querySelector('.main-display')
         n2 = text.textContent 
-        text.textContent = operate(n1,n2,op)
+        n1= operate(n1,n2,op)
+        n2=''
+        text.textContent=n1
+        pair=false
 }
+
 function update(){
     let text = document.querySelector('.main-display')
         n1 = text.textContent 
-        text.textContent = ''
+        text.textContent =''
+        pair= true
 }
