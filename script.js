@@ -11,40 +11,34 @@ function operate(no1,no2,operator){
 let press = document.querySelectorAll('button')
 press.forEach((press)=>
 press.addEventListener('click',function(){
-    if(press.textContent == '+'){
+    let newbutton = press.textContent
+    if(newbutton === '+'){
         op='sum';
-        let text = document.querySelector('.main-display')
-        n1 = text.textContent 
-        text.textContent = ''
+        update()
     }
-    if(press.textContent == '-'){
+    else if(newbutton === '-'){
         op='subtract';
-        let text = document.querySelector('.main-display')
-        n1 = text.textContent 
-        text.textContent = ''
+        update()
     }
-    if(press.textContent == '*'){
+    else if(newbutton === '*'){
         op='multiply';
-        let text = document.querySelector('.main-display')
-        n1 = text.textContent 
-        text.textContent = ''
+        update()
     }
-    if(press.textContent == '/'){
+    else if(newbutton === '/'){
         op='divide';
+        update()
+    }
+    else if(newbutton === '='){
+        result();
+    }
+    else if(newbutton === 'AC'){
         let text = document.querySelector('.main-display')
-        n1 = text.textContent 
         text.textContent = ''
     }
-    if(press.textContent == '='){
-        let text = document.querySelector('.main-display')
-        n2 = text.textContent 
-        text.textContent = operate(n1,n2,op)
 
-    }
     else{let text = document.querySelector('.main-display')
-    text.textContent = this.textContent;}
+    text.textContent += this.textContent;}
 }))
-
 
 
 function sum(n1,n2){
@@ -60,3 +54,13 @@ function divide(n1,n2){
     return parseInt(n1)/parseInt(n2);
 }
 
+function result(){
+    let text = document.querySelector('.main-display')
+        n2 = text.textContent 
+        text.textContent = operate(n1,n2,op)
+}
+function update(){
+    let text = document.querySelector('.main-display')
+        n1 = text.textContent 
+        text.textContent = ''
+}
