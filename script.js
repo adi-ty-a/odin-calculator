@@ -83,19 +83,29 @@ function subtract(n1,n2){
     return parseInt(n1)-parseInt(n2);
 }
 function divide(n1,n2){
-    if(n2===0) return 'lol'
-    return parseInt(n1)/parseInt(n2);
+    if(parseInt(n2) === 0){ 
+        return 'lol'
+    }
+    else{
+    return parseInt(n1)/parseInt(n2)
+    }
 }
 
 function result(){
     let text = document.querySelector('.main-display')
     if(pair){
         n2 = text.textContent 
-        n1= operate(n1,n2,op)
+        let sol = operate(n1,n2,op)
+        if(sol === 'lol'){
+            text.textContent='lol'
+        }
+        else{
+        n1= sol
         n2=''
         op=''
         text.textContent=n1
         pair=false
+    }
     }
     else{
         n1=text.textContent
